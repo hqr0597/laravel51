@@ -54,8 +54,8 @@ abstract class Controller extends BaseController {
      * @param array $rules
      * @param Request $request
      */
-    protected function validateRequest(array $rules, Request $request){
-        $validator = Validator::make($request->all(), $rules);
+    protected function validateRequest(array $rules, Request $request, $customAttributes=[]){
+        $validator = Validator::make($request->all(), $rules, [], $customAttributes);
 
         if ($validator->fails()) {
             $this->throwValidationException(
@@ -132,7 +132,7 @@ abstract class Controller extends BaseController {
         $results = $query->skip($start)->take($length)->get()->toArray();
 
         $data = [
-            'rows' => $results,
+            'data' => $results,
             'start' => $start,
             'length' => $length,
             'recordsTotal' => $totalCount

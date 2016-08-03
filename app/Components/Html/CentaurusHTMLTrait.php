@@ -42,8 +42,10 @@ trait CentaurusHtmlTrait {
         "modernizr-custom" => "centaurus/js/modernizr.custom.js",
         "notificationFx" => "centaurus/js/notificationFx.js",
         "bootstrap-dialog" => "centaurus/js/bootstrap-dialog.min.js",
+        "jquery-maskedinput" => "centaurus/js/jquery.maskedinput.min.js",
         "jquery-validate" => "js/common/jquery.validate.min.js",
         "jquery-validator" => "js/common/validator.js",
+        "cache-script" => "js/common/cache.js",
         "public-script" => "js/common/public.js",
         "widgets-script" => "js/common/widgets.js",
     ];
@@ -185,7 +187,7 @@ trait CentaurusHtmlTrait {
      */
     public function avatar( $s = 80, $d = 'mm', $r = 'g'){
         if($this->getStaff()->avatar){
-            return $this->getStaff()->avatar;
+            return asset($this->getStaff()->avatar);
         }else{
             $email = $this->getStaff()->email;
             $avatar =\Config::get('app.avatar_host').md5($email)."?s=$s&d=$d&r=$r";
